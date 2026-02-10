@@ -6,7 +6,6 @@ function App() {
     console.log(user);
   }
 
-
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">     
       <div className="w-full max-w-3xl p-6 bg-white rounded-lg shadow">       
