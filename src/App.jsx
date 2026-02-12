@@ -1,4 +1,5 @@
 import SearchBar from "./Components/SearchBar";
+import RepoList from "./Components/RepoList";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
           throw new Error("User not found");
         }
         const data = await response.json();
-        console.log(data);
+        setRepos(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -42,6 +43,7 @@ function App() {
         </h1>
         <main>
           <SearchBar GetUser={getUser} />
+          <RepoList repos={repos} />
         </main>
       </div>
     </div>

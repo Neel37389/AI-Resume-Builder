@@ -24,7 +24,7 @@ const SearchBar = (props) => {
 
         <button
           type="submit"
-          className="mt-4 w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+          className="mt-4 mb-4 w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
         >
           Find Profile
         </button>
