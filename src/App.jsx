@@ -43,7 +43,9 @@ function App() {
         </h1>
         <main>
           <SearchBar GetUser={getUser} />
-          <RepoList repos={repos} />
+          {loading && <p>Loading...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+          {!loading && !error && <RepoList repos={repos} />}
         </main>
       </div>
     </div>
