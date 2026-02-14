@@ -1,10 +1,8 @@
 const Navbar = ({ darkMode, setDarkMode }) => {
   return (
     <nav
-      className={`w-full flex justify-between items-center px-6 py-4 border-b ${
-        darkMode
-          ? "bg-[#020617] border-[#1e293b] text-[#f8fafc]"
-          : "bg-white border-[#e2e8f0] text-[#020617]"
+      className={`w-full flex justify-between items-center px-6 py-4 mb-4 ${
+        darkMode ? "bg-black  text-[#fafafa]" : "bg-white  text-[#09090b]"
       }`}
     >
       {/* Title */}
@@ -17,8 +15,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         onClick={() => setDarkMode(!darkMode)}
         className={`px-3 py-1 rounded-md text-sm transition ${
           darkMode
-            ? "bg-[#1e293b] text-[#f8fafc] hover:bg-[#334155]"
-            : "bg-[#e2e8f0] text-[#020617] hover:bg-[#cbd5e1]"
+            ? "bg-[#27272a] text-[#fafafa] hover:bg-[#3f3f46]"
+            : "bg-[#e4e4e7] text-[#09090b] hover:bg-[#d4d4d8]"
         }`}
       >
         {darkMode ? "☀️ Light" : "🌙 Dark"}

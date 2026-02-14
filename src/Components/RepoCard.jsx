@@ -6,15 +6,15 @@ const RepoCard = ({ repo, darkMode }) => {
       rel="noreferrer"
       className={`block p-4 rounded-xl border transition-all duration-200 hover:shadow-lg ${
         darkMode
-          ? "bg-[#020617] border-[#1e293b] text-[#f8fafc] hover:bg-[#0f172a]"
-          : "bg-white border-[#e2e8f0] text-[#020617] hover:bg-[#f1f5f9]"
+          ? "bg-[#09090b] border-[#27272a] text-[#fafafa] hover:bg-[#111]"
+          : "bg-white border-[#e4e4e7] text-[#09090b] hover:bg-[#f4f4f5]"
       }`}
     >
       <h3 className="font-bold text-lg mb-1">{repo.name}</h3>
 
       <p
         className={`text-sm mb-2 ${
-          darkMode ? "text-[#94a3b8]" : "text-[#64748b]"
+          darkMode ? "text-[#a1a1aa]" : "text-[#71717a]"
         }`}
       >
         {repo.description || "No description"}
