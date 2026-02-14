@@ -1,35 +1,39 @@
 import { useState } from "react";
 
-const SearchBar = (props) => {
-  const { GetUser } = props;
+const SearchBar = ({ GetUser }) => {
   const [user, setUser] = useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
+
     if (!user.trim()) return;
+
     GetUser(user);
     setUser("");
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter your username text here..."
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-        />
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Enter GitHub username..."
+        className="w-full p-3 border border-[#ddd6c8] bg-[#faf8f3]
+dark:bg-[#020617] dark:border-[#1e293b] dark:text-gray-100
+rounded-lg focus:outline-none focus:ring-2
+focus:ring-emerald-500"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+      />
 
-        <button
-          type="submit"
-          className="mt-4 mb-4 w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
-        >
-          Find Profile
-        </button>
-      </form>
-    </div>
+      <button
+        className="mt-4 w-full bg-[#6b7f4e] dark:bg-emerald-600
+text-white py-3 rounded-lg
+hover:bg-[#5a6c42] hover:dark:bg-emerald-700
+transition"
+      >
+        Find Profile
+      </button>
+    </form>
   );
 };
 
