@@ -2,14 +2,24 @@ import SearchBar from "./Components/SearchBar";
 import RepoList from "./Components/RepoList";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import AnalysisSkeleton from "./Components/AnalysisSkeleton";
 import { useGithub } from "./Hooks/useGithub";
 import { useState, useEffect } from "react";
+import AnalysisCard from "./Components/AnalysisCard";
+import { useAI } from "./Hooks/useAI";
 
 function App() {
   const [username, setUsername] = useState("");
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
+  const {
+    analysis,
+    loading: aiLoading,
+    error: aiError,
+    analyse,
+    reset,
+  } = useAI();
 
   // Save theme
   useEffect(() => {
@@ -21,6 +31,10 @@ function App() {
   function getUser(user) {
     setUsername(user);
   }
+
+  useEffect(() => {
+    reset();
+  }, [username, reset]);
 
   return (
     <div
@@ -60,6 +74,24 @@ function App() {
         >
           <main>
             <SearchBar GetUser={getUser} />
+            {repos.length > 0 && !loading && !error && (
+              <div className="mt-4">
+                <button
+                  onClick={analyse}
+                  disabled={aiLoading}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md"
+                >
+                  {aiLoading ? "Amalysing..." : "Analyze Repos"}
+                </button>
+              </div>
+            )}
+            {aiLoading ? (
+              <AnalysisSkeleton />
+            ) : aiError ? (
+              <p className="text-red-500 mt-4">{aiError}</p>
+            ) : analysis ? (
+              <AnalysisCard data={analysis} />
+            ) : null}
 
             {/* Loading */}
             {loading && (
