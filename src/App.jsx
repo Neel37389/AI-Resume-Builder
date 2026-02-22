@@ -7,6 +7,7 @@ import { useGithub } from "./Hooks/useGithub";
 import { useState, useEffect } from "react";
 import AnalysisCard from "./Components/AnalysisCard";
 import { useAI } from "./Hooks/useAI";
+import ErrorCard from "./Components/ErrorCard";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -29,12 +30,9 @@ function App() {
   const { repos, loading, error } = useGithub(username);
 
   function getUser(user) {
+    reset();
     setUsername(user);
   }
-
-  useEffect(() => {
-    reset();
-  }, [username, reset]);
 
   return (
     <div
@@ -77,7 +75,7 @@ function App() {
             {repos.length > 0 && !loading && !error && (
               <div className="mt-4">
                 <button
-                  onClick={analyse}
+                  onClick={() => analyse(repos)}
                   disabled={aiLoading}
                   className="px-4 py-2 bg-blue-600 text-white rounded-md"
                 >
@@ -88,7 +86,7 @@ function App() {
             {aiLoading ? (
               <AnalysisSkeleton />
             ) : aiError ? (
-              <p className="text-red-500 mt-4">{aiError}</p>
+              <ErrorCard message={aiError} />
             ) : analysis ? (
               <AnalysisCard data={analysis} />
             ) : null}

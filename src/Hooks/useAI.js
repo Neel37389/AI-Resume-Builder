@@ -1,26 +1,24 @@
 import { useState } from "react";
 import { aiService } from "../Services/aiService";
-import { useCallback } from "react";
 
 export function useAI() {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const reset = useCallback(() => {
+  const reset = () => {
     setAnalysis(null);
     setError(null);
-  }, []);
+  };
 
-  const analyse = async () => {
+  const analyse = async (repos) => {
     if (loading) return;
     try {
       setAnalysis(null);
       setLoading(true);
       setError(null);
 
-      const result = await aiService();
+      const result = await aiService(repos);
       setAnalysis(result);
-      console.log(result);
     } catch (err) {
       setError(err.message);
     } finally {
