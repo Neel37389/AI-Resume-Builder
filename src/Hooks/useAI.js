@@ -10,14 +10,14 @@ export function useAI() {
     setError(null);
   };
 
-  const analyse = async (repos) => {
+  const analyse = async (repos, targetRole) => {
     if (loading) return;
     try {
       setAnalysis(null);
       setLoading(true);
       setError(null);
 
-      const result = await aiService(repos);
+      const result = await aiService(repos, targetRole);
       setAnalysis(result);
     } catch (err) {
       setError(err.message);

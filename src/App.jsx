@@ -8,9 +8,11 @@ import { useState, useEffect } from "react";
 import AnalysisCard from "./Components/AnalysisCard";
 import { useAI } from "./Hooks/useAI";
 import ErrorCard from "./Components/ErrorCard";
+import TargetRole from "./Components/TargetRole";
 
 function App() {
   const [username, setUsername] = useState("");
+  const [targetRole, setTargetRole] = useState("");
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
@@ -71,12 +73,14 @@ function App() {
           }`}
         >
           <main>
+            <TargetRole targetRole={targetRole} setTargetRole={setTargetRole} />
             <SearchBar GetUser={getUser} />
+
             {repos.length > 0 && !loading && !error && (
               <div className="mt-4">
                 <button
-                  onClick={() => analyse(repos)}
-                  disabled={aiLoading}
+                  onClick={() => analyse(repos, targetRole)}
+                  disabled={aiLoading || !targetRole.trim()}
                   className="px-4 py-2 bg-blue-600 text-white rounded-md"
                 >
                   {aiLoading ? "Amalysing..." : "Analyze Repos"}
@@ -86,7 +90,10 @@ function App() {
             {aiLoading ? (
               <AnalysisSkeleton />
             ) : aiError ? (
-              <ErrorCard message={aiError} />
+              <ErrorCard
+                message={aiError}
+                onRetry={() => analyse(repos, targetRole)}
+              />
             ) : analysis ? (
               <AnalysisCard data={analysis} />
             ) : null}
