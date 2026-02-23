@@ -81,21 +81,24 @@ function App() {
                 <button
                   onClick={() => analyse(repos, targetRole)}
                   disabled={aiLoading || !targetRole.trim()}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md"
+                  className="mt-4 w-full bg-[#6b7f4e] dark:bg-emerald-600
+                text-white py-3 rounded-lg
+                hover:bg-[#5a6c42] hover:dark:bg-emerald-700
+                  transition"
                 >
                   {aiLoading ? "Amalysing..." : "Analyze Repos"}
                 </button>
               </div>
             )}
             {aiLoading ? (
-              <AnalysisSkeleton />
+              <AnalysisSkeleton darkMode={darkMode} />
             ) : aiError ? (
               <ErrorCard
                 message={aiError}
                 onRetry={() => analyse(repos, targetRole)}
               />
             ) : analysis ? (
-              <AnalysisCard data={analysis} />
+              <AnalysisCard data={analysis} darkMode={darkMode} />
             ) : null}
 
             {/* Loading */}

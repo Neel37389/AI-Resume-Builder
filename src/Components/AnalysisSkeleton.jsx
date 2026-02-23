@@ -33,9 +33,15 @@ const SkeletonLines = ({ count = 3 }) => {
   );
 };
 
-const AnalysisSkeleton = () => {
+const AnalysisSkeleton = ({ darkMode }) => {
   return (
-    <div className="mt-8 p-6 rounded-xl shadow-md border bg-white">
+    <div
+      className={`mt-8 p-6 rounded-xl shadow-md border ${
+        darkMode
+          ? "bg-[#09090b] border-[#27272a] text-[#fafafa]"
+          : "bg-white border-[#e4e4e7] text-[#09090b]"
+      }`}
+    >
       <SkeletonHeading />
       <SkeletonScore />
 

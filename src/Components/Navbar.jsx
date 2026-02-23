@@ -7,7 +7,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     >
       {/* Title */}
       <span className="font-bold text-xl tracking-tight">
-        AI Resume Analyzer
+        AI Github Repositories Analyzer
       </span>
 
       {/* Toggle */}
