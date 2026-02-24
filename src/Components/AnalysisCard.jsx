@@ -1,5 +1,44 @@
+import jsPDF from "jspdf";
+
 export default function AnalysisCard({ data, darkMode }) {
   if (!data) return null;
+
+  const handleDownload = () => {
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    doc.setFontSize(18);
+    doc.text("Github AI Resume Summary", 20, y);
+    y += 10;
+
+    doc.setFontSize(12);
+    doc.text(`Overall Score ${data.overallScore}`, 20, y);
+    y += 10;
+
+    doc.text("Skills:", 20, y);
+    y += 8;
+    doc.text(data.detectedSkills.join(", "), 20, y);
+    y += 12;
+
+    doc.text("Resume Highlights:", 20, y);
+    y += 8;
+    data.resumeBullets.forEach((bullet) => {
+      doc.text(`• ${bullet}`, 20, y);
+      y += 8;
+    });
+
+    y += 4;
+
+    doc.text("Recommended Improvements:", 20, y);
+    y += 8;
+    data.improvements.forEach((item) => {
+      doc.text(`• ${item}`, 20, y);
+      y += 8;
+    });
+
+    doc.save("github-ai-resume-summary.pdf");
+  };
 
   return (
     <div
@@ -55,6 +94,7 @@ export default function AnalysisCard({ data, darkMode }) {
           ))}
         </ul>
       </div>
+      <button onClick={handleDownload}>Download PDF</button>
     </div>
   );
 }
