@@ -24,8 +24,9 @@ export default function AnalysisCard({ data, darkMode }) {
     doc.text("Resume Highlights:", 20, y);
     y += 8;
     data.resumeBullets.forEach((bullet) => {
-      doc.text(`• ${bullet}`, 20, y);
-      y += 8;
+      const lines = doc.splitTextToSize(`• ${bullet}`, 170);
+      doc.text(lines, 20, y);
+      y += lines.length * 8;
     });
 
     y += 4;
@@ -33,8 +34,9 @@ export default function AnalysisCard({ data, darkMode }) {
     doc.text("Recommended Improvements:", 20, y);
     y += 8;
     data.improvements.forEach((item) => {
-      doc.text(`• ${item}`, 20, y);
-      y += 8;
+      const lines = doc.splitTextToSize(`• ${item}`, 170);
+      doc.text(lines, 20, y);
+      y += lines.length * 8;
     });
 
     doc.save("github-ai-resume-summary.pdf");
