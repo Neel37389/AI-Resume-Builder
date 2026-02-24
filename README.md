@@ -1,16 +1,75 @@
-# React + Vite
+# GitHub AI Resume Analyzer – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo: https://your-frontend-url.vercel.app
 
-Currently, two official plugins are available:
+# Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is the frontend for the GitHub AI Resume Analyzer, a full-stack AI-powered application that evaluates public GitHub repositories and generates role-specific resume feedback.
 
-## React Compiler
+Users can:
+- Enter a public GitHub username
+- Fetch and display repositories
+- Specify a target role (e.g., Frontend Engineer, Backend Engineer)
+- Generate AI-powered analysis tailored to that role
+- Download a structured PDF summary
+- Toggle between light and dark mode
+- The frontend emphasizes clean architecture, proper async handling, and production-ready UX patterns.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Features
 
-## Expanding the ESLint configuration
+- GitHub API integration
+- Role-based AI analysis integration
+- Structured analysis rendering
+- Loading skeleton states
+- Error handling with retry functionality
+- PDF export of AI-generated resume feedback
+- Dark mode support
+- Production deployment on Vercel
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Tech Stack
+
+React (Vite), 
+Tailwind CSS, 
+Custom Hooks, 
+Service Layer Pattern, 
+jsPDF (PDF generation), 
+Vercel (Deployment), 
+
+# Architecture
+
+The application follows separation of concerns:
+
+# Service Layer
+
+Responsible only for API communication:
+
+- Sends repositories and target role to backend
+- Handles response validation
+- Throws errors for failed requests
+
+# Custom Hooks
+
+Encapsulate async logic and state handling:
+
+- useGithub – Fetches repositories
+- useAI – Manages AI analysis lifecycle
+
+Each hook manages:
+
+- Loading state
+- Error state
+- Data state
+- Reset logic
+
+# Presentational Components
+
+Pure UI components that receive data via props and contain no business logic.
+
+Examples:
+- SearchBar
+- RepoList
+- AnalysisCard
+- ErrorCard
+- AnalysisSkeleton
+- TargetRole
+- Navbar / Footer
