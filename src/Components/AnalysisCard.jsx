@@ -94,7 +94,15 @@ export default function AnalysisCard({ data, darkMode }) {
           ))}
         </ul>
       </div>
-      <button onClick={handleDownload}>Download PDF</button>
+      <button
+        className="mt-4 w-full bg-[#6b7f4e] dark:bg-emerald-600
+      text-white py-3 rounded-lg
+      hover:bg-[#5a6c42] hover:dark:bg-emerald-700
+        transition"
+        onClick={handleDownload}
+      >
+        Download PDF
+      </button>
     </div>
   );
 }
